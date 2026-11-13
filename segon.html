@@ -2,13 +2,41 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Alumne">
+        <meta name="keywords">
+
         <title>La calma</title>
         <style type="text/css">
             @import url("css/estils.css");
         </style>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                let segons = 0;
+
+                function actualitzar() {
+                    segons++;
+
+                    let mins = Math.floor(segons / 60);
+                    let secs = segons % 60;
+
+                    document.getElementById("cronometre").textContent =
+                        "Portes " + mins + " minuts i " +
+                        secs + " segons aprenent sobre la relaxació a l'aire lliure";
+                }
+            
+                setInterval(actualitzar, 1000); 
+            });
+        </script>
     </head>
+    
     <body>
         <main class="requadre">
+            <header>
+                <div id="cronometre">
+                    Portes 0 minuts i 0 segons aprenent sobre la relaxacio a l'aire lliure
+                </div>
+            </header>
             <nav class="navegacio">
                 <a href="index.html">La meditació</a>
                 <a href="segon.html">L'aire lliure</a>
