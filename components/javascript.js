@@ -1,21 +1,22 @@
-const modal = document.getElementById("modalZoom");
 const imgAmpliada = document.getElementById("imgAmpliada");
-const miniatura = document.querySelectorAll("miniatura");
-const cerrar = document.querySelector("tancar");
+const miniatures = document.querySelectorAll(".miniatura");
+const botoTancar = document.getElementById("tancar");
 
-miniatura.forEach(img => {
+miniatures.forEach(img => {
   img.addEventListener("click", () => {
-    modal.style.display = "flex";
+    // Carreguem la ruta i descripció de la imatge clicada
     imgAmpliada.src = img.src;
+    imgAmpliada.alt = img.alt;
+    
+    // Mostrem la imatge i la creu de tancar a la dreta
+    imgAmpliada.style.display = "block";
+    tancar.style.display = "block";
   });
 });
 
-cerrar.addEventListener("click", () => {
-  modal.style.display = "none";
-});
-
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    modal.style.display = "none";
-  }
+// En clicar la "X", tornem a deixar l'espai de la dreta buit
+tancar.addEventListener("click", () => {
+  imgAmpliada.style.display = "none";
+  tancar.style.display = "none";
+  imgAmpliada.src = "";
 });
