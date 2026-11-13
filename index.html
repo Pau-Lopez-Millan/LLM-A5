@@ -1,11 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="ca">
     <head>
         <meta charset="utf-8" />
         <title>La calma</title>
         <style type="text/css">
             @import url("css/estils.css");
         </style>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const formulari = document.getElementById("Contrasenya");
+                const pass1 = document.getElementById("contrasenya");
+                const pass2 = document.getElementById("contrasenya2");
+                const missatge = document.getElementById("Validacio");
+
+                formulari.addEventListener("submit", function(event) {
+                    const valor1 = pass1.value;
+                    const valor2 = pass2.value;
+
+                    if (valor1.length <= 8) {
+                        event.preventDefault();
+                        missatge.textContent = "Error: La contrasenya ha de tenir més de 8 caràcters.";
+                        missatge.style.color = "red";
+                        return;
+                    }
+
+                    if (valor1 !== valor2) {
+                        event.preventDefault();
+                        missatge.textContent = "Error: Les contrasenyes no coincideixen.";
+                        missatge.style.color = "red";
+                        return;
+                    }
+
+                    missatge.textContent = "Contrasenya confirmada correctament!";
+                    missatge.style.color = "green";
+                    
+                    event.preventDefault(); 
+                });
+
+                formulari.addEventListener("reset", function() {
+                    missatge.textContent = "";
+                });
+            });
+        </script>
     </head>
     <body>
         <main class="requadre">
@@ -15,25 +51,44 @@
                 <a href="tercer.html">L'aigua</a>
             </nav>
             <h1>La Meditació</h1>
-            <p>Com podem definir la meditació: 
+            <p>Com podem definir  
                 <span id="paraula"
                     onmouseover="mostrar()"
                     onmouseout="ocultar()"
                     style="cursor: pointer; text-decoration: underline;">
+                    (la meditació: )
                 </span>
             </p>
-            <div id="ocult">La meditació és una de les formes de relaxació
-            més simples i eficaces, ja que no es necessari assistir a classes de yoga o pilates, sols un lloc tranquil,
-            tu i la teva ment, concentran-te.</div>
+            
+            <div id="ocult" style="visibility: hidden;">
+                La meditació és una de les formes de relaxació més simples i eficaces, ja que no és necessari assistir a classes de ioga o pilates, sols un lloc tranquil, tu i la teva ment, concentrant-te.
+            </div>
+
             <script>
                 function mostrar() {
-                    document.getElementById('ocult').element.style.visibility = 'visible';
+                    document.getElementById('ocult').style.visibility = 'visible';
                 }
 
                 function ocultar() {
-                    document.getElementById('ocult').element.style.visibility = 'hidden';
+                    document.getElementById('ocult').style.visibility = 'hidden';
                 }
             </script>
+
+            <form id="Contrasenya" action="#" method="post">
+                <fieldset>
+                    <legend>Contrasenya</legend>
+                    <label for="contrasenya">Contrasenya:</label>
+                    <input type="password" id="contrasenya" name="Contrasenya" required>
+                    
+                    <label for="contrasenya2">Reintrodueix contrasenya:</label>
+                    <input type="password" id="contrasenya2" name="Reintrodueix_contrasenya" required>
+                    
+                    <button type="submit">Confirmar</button>
+                    <button type="reset">Borrar</button>
+                </fieldset>
+                <p id="Validacio"></p>
+            </form>
         </main>
+        <script src="components/javascript.js"></script>
     </body>
 </html>
